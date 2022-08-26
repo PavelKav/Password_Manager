@@ -1,4 +1,5 @@
-
+import sys
+from main_gui_py import *
 
 class PasswordManager:
 
@@ -19,7 +20,7 @@ class PasswordManager:
         with open(path, 'r') as f:
             for line in f:
                 site, log_pass = line.split(':')
-                self.password_dict[site] = log_pass.split(',')
+                self.password_dict[site] = log_pass.split(",")
 
     def add_password(self, site, login, password):
         self.password_dict[site] = login, password
@@ -27,6 +28,7 @@ class PasswordManager:
         if self.password_file is not None:
             with open(self.password_file, 'a+') as f:
                 f.write(site + ':' + login + ',' + password + '\n')
+
 
 
 def main():
@@ -47,14 +49,14 @@ def main():
 
 
 
-    #print(""" Что ты хочешь сделать?
-     #  (1) Создать новый пароль
-      # (2) Показать сайт, логин, пароль
-       #(3) Показать значение словаря
-       #(4) Создать новый файл с паролями
-       #(5) Загрузить файл с паролями
-       #(Выйти)
-       #""")
+    print(""" Что ты хочешь сделать? 
+       (1) Создать новый пароль
+       (2) Показать сайт, логин, пароль
+       (3) Показать значение словаря
+       (4) Создать новый файл с паролями
+       (5) Загрузить файл с паролями
+       (Выйти)
+       """)
     done = False
 
     while not done:
@@ -69,7 +71,7 @@ def main():
             site = input("Введите сайт: ")
             login = pm.password_dict[site][0]
             password = pm.password_dict[site][1]
-            print(f'Ваш логин для сайта {site} - {login} , пароль - {password} ')
+            print(f'Ваш логин - {login} , пароль - {password} ')
         elif choice == '3':
             print(f'Значение словаря password_dict = {pm.password_dict}')
         elif choice == '4':
